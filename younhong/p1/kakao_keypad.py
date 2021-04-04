@@ -39,8 +39,8 @@ def solution(numbers, hand):
           newXPos = int(number / 3)
         newYPos = 1
 
-        leftDistance = math.pow(newXPos - lastXLeftHandPos, 2) + math.pow(newYPos - lastYLeftHandPos, 2)
-        rightDistance = math.pow(newXPos - lastXRightHandPos, 2) + math.pow(newYPos - lastYRightHandPos, 2)
+        leftDistance = abs(newXPos - lastXLeftHandPos) + abs(newYPos - lastYLeftHandPos)
+        rightDistance = abs(newXPos - lastXRightHandPos) + abs(newYPos - lastYRightHandPos)
 
         if (leftDistance < rightDistance):
           answer += 'L'
