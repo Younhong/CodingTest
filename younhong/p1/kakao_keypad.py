@@ -8,6 +8,12 @@ def solution(numbers, hand):
     lastXRightHandPos = 3
     lastYRightHandPos = 2
 
+    if type(numbers) is not list:
+      return ''
+
+    if type(hand) is not str:
+      return ''
+
     if (len(numbers) == 0 or len(numbers) > 1000):
       return ''
     if (hand!='left' and hand!='right'):
