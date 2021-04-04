@@ -8,7 +8,14 @@ def solution(numbers, hand):
     lastXRightHandPos = 3
     lastYRightHandPos = 2
 
+    if (len(numbers) == 0 or len(numbers) > 1000):
+      return ''
+    if (hand!='left' and hand!='right'):
+      return ''
+
     for number in numbers:
+      if number < 0 or number > 9:
+        return ''
       if (number==1 or number==4 or number==7):
         answer += 'L'
         lastXLeftHandPos = int(number / 3)
