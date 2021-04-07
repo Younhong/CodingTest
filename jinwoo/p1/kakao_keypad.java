@@ -9,78 +9,64 @@ public class kakao_keypad {
 	}
 
 	public static String findSolution(int[] numbers, String hand) {
-		StringBuilder answer = new StringBuilder();
-
-		int len = numbers.length;
-		int[][] array = new int[12][12];
-
-		int k = 1;
-		for (int i = 0; i < 4; i++) {
-			for (int j = 0; j < 3; j++) {
-				array[i][j] = k++;
+		String answer = "";
+		int lastXLeftHandPos = 3;
+		int lastYLeftHandPos = 0;
+		int lastXRightHandPos = 3;
+		int lastYRightHandPos = 2;
+		
+		for(int num : numbers) { 
+			if((num==1) || (num==4) ||(num==7)) {
+				answer += "L";
+				lastYLeftHandPos = 0;
+				lastXLeftHandPos = num/3;
 			}
-		}
-		array[3][1] = 0;
-//        array[3][0]=10; // *
-//        array[3][1]=11; // 0
-//        array[3][1]=12; // #
-
-		int n = 0;
-//        int x,y;
-		int lx = 3, ly = 0, rx = 3, ry = 2;
-		int ldist = 0, rdist = 0;
-
-		while (0 < len) {
-			len--;
-			for (int i = 0; i < 4; i++) {
-				for (int j = 0; j < 3; j++) {
-					if (array[i][j] == numbers[n]) {
-						if ((array[i][j] == 1) || (array[i][j] == 4) || (array[i][j] == 7)) {
-
-							answer.append("L");
-							lx = i;
-							ly = j;
-						} else if ((array[i][j] == 3) || (array[i][j] == 6) || (array[i][j] == 9)) {
-							answer.append("R");
-							rx = i;
-							ry = j;
-						} else {// if(array[i][j]==numbers[n]) {
-								// x=i;
-								// y=j;
-//                        	System.out.println(i);
-//                        	System.out.println(j);
-							ldist = Math.abs(lx - i) + Math.abs(ly - j);
-							rdist = Math.abs(rx - i) + Math.abs(ry - j);
-//                        	System.out.println(ldist);
-//                        	System.out.println(rdist);
-							if (ldist < rdist) {
-								answer.append("L");
-								lx = i;
-								ly = j;
-							} else if (ldist > rdist) {
-								answer.append("R");
-								rx = i;
-								ry = j;
-							} else {
-								if (hand.equals("right")) {
-									answer.append("R");
-									rx = i;
-									ry = j;
-								} else {
-									answer.append("L");
-									lx = i;
-									ly = j;
-								}
-							}
-						}
+			else if((num==3) || (num==6) ||(num==9)) {
+				answer += "R";
+				lastYRightHandPos = 2;
+				lastXRightHandPos = num/3 - 1;
+			}
+			else {
+				int newXPos;
+				int newYPos=1;
+				if((num == 0)) {
+					newXPos=3;
+				}
+				else{
+					newXPos=num/3;
+				}
+				int leftDistance;
+				int rightDistance;
+				
+				leftDistance = Math.abs(lastYLeftHandPos - newYPos) + Math.abs(lastXLeftHandPos - newXPos);
+				rightDistance = Math.abs(lastYRightHandPos - newYPos) + Math.abs(lastXRightHandPos - newXPos);
+				System.out.println("l =: "+ leftDistance);
+				System.out.println("r =: "+ rightDistance);
+				
+				if(leftDistance < rightDistance) {
+					answer += "L";
+					lastYLeftHandPos = newYPos;
+					lastXLeftHandPos = newXPos;
+				}
+				else if(leftDistance > rightDistance) {
+					answer += "R";
+					lastYRightHandPos = newYPos;
+					lastXRightHandPos = newXPos;
+				}
+				else {
+					if(hand.equals("left")) {
+						answer += "L";
+						lastYLeftHandPos = newYPos;
+						lastXLeftHandPos = newXPos;
+					}
+					else {
+						answer += "R";
+						lastYRightHandPos = newYPos;
+						lastXRightHandPos = newXPos;
 					}
 				}
 			}
-
-			n++;
 		}
-
-		String result = answer.toString();
-		return result;
+		return answer;
 	}
 }
