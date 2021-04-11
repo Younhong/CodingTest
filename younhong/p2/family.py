@@ -7,8 +7,8 @@ def solution(familyNumber, target, relationNumber, relationList):
   for relation in relationList:
     x = relation[0]-1
     y = relation[1]-1
-    relationMap[x][y] = 1
-    relationMap[y][x] = -1
+    relationMap[x][y] = -1
+    relationMap[y][x] = 1
 
   parent = []
   child = []
@@ -25,17 +25,17 @@ def search(i, relationMap, familyNumber, targetFrom, targetTo, searchedNumber, r
   
   # 연결된 지점을 모두 찾음
   for x in range(familyNumber):
-    if relationMap[i-1][x] == -1:
+    if relationMap[i-1][x] == 1:
       parent.append(x+1)
-    elif relationMap[i-1][x] == 1:
+    elif relationMap[i-1][x] == -1:
       child.append(x+1)
 
-  # print("===")
-  # print(searchedNumber)
-  # print(parent)
-  # print(child)
-  # print(result)
-  # print("===")
+  print("===")
+  print(searchedNumber)
+  print(parent)
+  print(child)
+  print(result)
+  print("===")
 
   # 연결 없을 때
   if (len(parent) == 0 and len(child) == 0):
