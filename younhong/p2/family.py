@@ -30,12 +30,11 @@ def search(i, relationMap, familyNumber, targetFrom, targetTo, searchedNumber, r
     elif relationMap[i-1][x] == -1:
       child.append(x+1)
 
-  print("===")
-  print(searchedNumber)
-  print(parent)
-  print(child)
-  print(result)
-  print("===")
+  # print("===")
+  # print(searchedNumber)
+  # print(parent)
+  # print(child)
+  # print("===")
 
   # 연결 없을 때
   if (len(parent) == 0 and len(child) == 0):
