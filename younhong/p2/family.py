@@ -14,13 +14,11 @@ def solution(familyNumber, target, relationNumber, relationList):
   child = []
   searchedNumber = []
 
-  result = 0
-
-  result = search(targetFrom, relationMap, familyNumber, targetFrom, searchedNumber, result) 
-
+  result = search(targetFrom, relationMap, familyNumber, targetFrom, targetTo, searchedNumber, 0) 
+  
   return result
 
-def search(i, relationMap, familyNumber, targetFrom, searchedNumber, result):
+def search(i, relationMap, familyNumber, targetFrom, targetTo, searchedNumber, result):
   parent = []
   child = []
   searchedNumber.append(i)
@@ -46,16 +44,16 @@ def search(i, relationMap, familyNumber, targetFrom, searchedNumber, result):
     if len(parent) > 0:
       # 각 상위 연결 지점에 대해서
       for x in parent:
-        if x == 3:
-          return result + 1
+        if x == targetTo:
+          return 1
         elif x not in searchedNumber:
-          result = search(x, relationMap, familyNumber, targetFrom, searchedNumber, result)
+          result = search(x, relationMap, familyNumber, targetFrom, targetTo, searchedNumber, 0)
     elif len(child) > 0:
       for x in child:
-        if x == 3:
-          return result + 1
+        if x == targetTo:
+          return 1
         elif x not in searchedNumber:
-          result = search(x, relationMap, familyNumber, targetFrom, searchedNumber, result)
+          result = search(x, relationMap, familyNumber, targetFrom, targetTo, searchedNumber, 0)
 
   if result > 0:
     return result + 1
@@ -63,6 +61,6 @@ def search(i, relationMap, familyNumber, targetFrom, searchedNumber, result):
     return 0
 
 print(solution(9, [7,3], 7, [[1,2], [1,3], [2,7], [2,8], [2,9], [4,5], [4,6]]))
-print(solution(9, [7,3], 3, [[1,2], [1,3], [2,7]]))
+print(solution(9, [7,2], 3, [[1,2], [1,3], [3,7]]))
 print(solution(9, [7,3], 2, [[1,2], [1,3]]))
 print(solution(9, [7,3], 3, [[1,2], [1,3], [5,7]]))
