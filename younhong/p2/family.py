@@ -14,7 +14,7 @@ def solution(familyNumber, target, relationNumber, relationList):
   child = []
   searchedNumber = []
 
-  result = search(targetFrom, relationMap, familyNumber, targetFrom, targetTo, searchedNumber, 0) 
+  result = search(targetFrom, relationMap, familyNumber, targetFrom, targetTo, searchedNumber, -1) 
   
   return result
 
@@ -39,7 +39,7 @@ def search(i, relationMap, familyNumber, targetFrom, targetTo, searchedNumber, r
 
   # 연결 없을 때
   if (len(parent) == 0 and len(child) == 0):
-    return 0
+    return -1
   else:
     if len(parent) > 0:
       # 각 상위 연결 지점에 대해서
@@ -47,18 +47,18 @@ def search(i, relationMap, familyNumber, targetFrom, targetTo, searchedNumber, r
         if x == targetTo:
           return 1
         elif x not in searchedNumber:
-          result = search(x, relationMap, familyNumber, targetFrom, targetTo, searchedNumber, 0)
+          result = search(x, relationMap, familyNumber, targetFrom, targetTo, searchedNumber, -1)
     elif len(child) > 0:
       for x in child:
         if x == targetTo:
           return 1
         elif x not in searchedNumber:
-          result = search(x, relationMap, familyNumber, targetFrom, targetTo, searchedNumber, 0)
+          result = search(x, relationMap, familyNumber, targetFrom, targetTo, searchedNumber, -1)
 
   if result > 0:
     return result + 1
   else:
-    return 0
+    return -1
 
 print(solution(9, [7,3], 7, [[1,2], [1,3], [2,7], [2,8], [2,9], [4,5], [4,6]]))
 print(solution(9, [7,2], 3, [[1,2], [1,3], [3,7]]))
