@@ -11,13 +11,11 @@ def solution(records):
       action, id = record.split(" ")
   
     if len(name) >= 1 and len(name) <= 10:
+      actionList.append(action)
+      userList.append(id)
+
       if action == "Enter" or action == "Change":
-        actionList.append(action)
-        userList.append(id)
         nameMap[id] = name
-      else:
-        actionList.append(action)
-        userList.append(id) 
 
   for i in range(len(userList)):
     if actionList[i] == "Enter":
@@ -27,4 +25,4 @@ def solution(records):
       
   return answers
 
-print(solution(["Enter uid123 Muzi", "Enter uid123 Prodo", "Enter uid124 Con", "Enter uid000 Ryan"]))
+print(solution(["Enter uid123 Muzi", "Leave uid123", "Enter uid124 Con", "Enter uid000 Ryan"]))
