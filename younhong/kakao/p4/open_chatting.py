@@ -24,6 +24,7 @@ def solution(records):
       answers.append(nameMap[userList[i]] + "님이 들어왔습니다.")
     elif actionList[i] == "Leave":
       answers.append(nameMap[userList[i]] + "님이 나갔습니다.")
+      
   return answers
 
 print(solution(["Enter uid123 Muzi", "Enter uid123 Prodo", "Enter uid124 Con", "Enter uid000 Ryan"]))
