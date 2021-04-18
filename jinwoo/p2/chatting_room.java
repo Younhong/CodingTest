@@ -3,13 +3,13 @@
 import java.util.Arrays;
 import java.util.HashMap;
 
-public class Phone {
+public class chatting_room {
 
 	public static void main(String[] args) {
 		// TODO Auto-generated method stub
 		String[] numbers = { "Enter uid1234 Muzi", "Enter uid4567 Prodo", "Leave uid1234", "Enter uid1234 Prodo",
 				"Change uid4567 Ryan" };
-		String[] result = Phone.solution(numbers);
+		String[] result = chatting_room.solution(numbers);
 
 		System.out.println(Arrays.toString(result));
 	}
