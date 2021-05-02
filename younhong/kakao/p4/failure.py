@@ -28,21 +28,21 @@ def solution(N, stages):
     for i in range(len(percentList)):
       for j in range(len(percentList)):
         if percentList[i] > percentList[j]:
-          temp = percentList[i]
-          percentList[i] = percentList[j]
-          percentList[j] = temp
+          percentList[i], percentList[j] = swap(percentList[i], percentList[j])
 
-          temp = indexList[i]
-          indexList[i] = indexList[j]
-          indexList[j] = temp
+          indexList[i], indexList[j] = swap(indexList[i], indexList[j])
         elif percentList[i] == percentList[j]:
           if indexList[i] < indexList[j]:
-            temp = indexList[i]
-            indexList[i] = indexList[j]
-            indexList[j] = temp
+            indexList[i], indexList[j] = swap(indexList[i], indexList[j])
 
     return indexList
 
-print(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]))
+def swap(a, b):
+  temp = a
+  a = b
+  b = temp
 
+  return a, b
+
+print(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]))
 print(solution(	4, [4, 4, 4, 4, 4]))
