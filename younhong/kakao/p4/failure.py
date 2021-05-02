@@ -24,8 +24,6 @@ def solution(N, stages):
 
       percentList.append(percent)
 
-    print(percentList)
-
     # sorting
     answer = sorted(range(len(percentList)), key=lambda k: percentList[k], reverse = True)
 
