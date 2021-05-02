@@ -25,8 +25,6 @@ def solution(N, stages):
       percentList.append(percent)
       indexList.append(i)
 
-    print(indexList)
-    print(percentList)
     for i in range(len(percentList)):
       for j in range(len(percentList)):
         if percentList[i] > percentList[j]:
