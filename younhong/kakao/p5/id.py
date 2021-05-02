@@ -13,7 +13,8 @@ def solution(new_id):
   answer = temp
   
   # stage 3
-  temp = answer[0]
+  if len(answer) > 0:
+    temp = answer[0]
   for i in range(1, len(answer)):
     if answer[i] != "." or answer[i-1] != ".":
       temp += answer[i]
@@ -21,10 +22,13 @@ def solution(new_id):
   answer = temp
 
   # stage 4
-  if answer[0] == ".":
-    answer = answer[1: len(answer)]
-  elif answer[len(answer) - 1] == ".":
-    answer = answer[0: len(answer) - 1]
+  if len(answer) > 0:
+    if answer[0] == ".":
+      answer = answer[1: len(answer)]
+      
+  if len(answer) > 0:
+    if answer[len(answer) - 1] == ".":
+      answer = answer[0: len(answer) - 1]
 
   # stage 5
   if len(answer) == 0:
@@ -44,8 +48,10 @@ def solution(new_id):
 
   return answer
 
+print(solution(".1."))
+# print(solution("~!@#$%&*()=+[{]}:?,<>/"))
 # print(solution("...!@BaT#*..y.abcdefghijklm"))
-print(solution("z-+.^."))
+# print(solution("z-+.^."))
 # print(solution("=.="))
 # print(solution("123_.def"))
 # print(solution("abcdefghijklmn.p"))
