@@ -1,6 +1,6 @@
 def solution(N, stages):
-    answer = []
     percentList = []
+    indexList = []
 
     if N < 1 or N > 500 or len(stages) < 1 or len(stages) > 200000:
       return "Invalid"
@@ -23,12 +23,28 @@ def solution(N, stages):
         percent = totalFail / totalNumber
 
       percentList.append(percent)
+      indexList.append(i)
 
-    # sorting
-    answer = sorted(range(len(percentList)), key=lambda k: percentList[k], reverse = True)
+    print(indexList)
+    print(percentList)
+    for i in range(len(percentList)):
+      for j in range(len(percentList)):
+        if percentList[i] > percentList[j]:
+          temp = percentList[i]
+          percentList[i] = percentList[j]
+          percentList[j] = temp
 
-    answer = [i+1 for i in answer]
+          temp = indexList[i]
+          indexList[i] = indexList[j]
+          indexList[j] = temp
+        elif percentList[i] == percentList[j]:
+          if indexList[i] < indexList[j]:
+            temp = indexList[i]
+            indexList[i] = indexList[j]
+            indexList[j] = temp
 
-    return answer
+    return indexList
 
 print(solution(5, [2, 1, 2, 6, 2, 4, 3, 3]))
+
+print(solution(	4, [4, 4, 4, 4, 4]))
