@@ -15,11 +15,11 @@ def solution(new_id):
   # stage 3
   if len(answer) > 0:
     temp = answer[0]
-  for i in range(1, len(answer)):
-    if answer[i] != "." or answer[i-1] != ".":
-      temp += answer[i]
+    for i in range(1, len(answer)):
+      if answer[i] != "." or answer[i-1] != ".":
+        temp += answer[i]
 
-  answer = temp
+    answer = temp
 
   # stage 4
   if len(answer) > 0:
