@@ -29,8 +29,7 @@ def solution(N, stages):
     # sorting
     answer = sorted(range(len(percentList)), key=lambda k: percentList[k], reverse = True)
 
-    for i in range(len(answer)):
-      answer[i] += 1
+    answer = [i+1 for i in answer]
 
     return answer
 
