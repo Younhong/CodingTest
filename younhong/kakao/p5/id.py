@@ -1,63 +1,51 @@
-def stage1(new_id):
-  capitalList = []
-  for l in new_id:
-    if l.isupper():
-      capitalList.append(l)
-
-  before = ""
-  after = ""
-  if len(capitalList) == 0:
-    print("1단계 변화 없습니다")
-  else:
-    for i in range(len(capitalList)):
-      # 마지막 항목은 이/가, 으로/로
-      if i == len(capitalList) - 1:
-        if capitalList[i] == 'M' or capitalList[i] == 'N':
-          before = before + capitalList[i] + "이"
-          after = after + capitalList[i].lower() + "으로"
-
-        elif capitalList[i] == 'L' or capitalList[i] == 'R':
-          before = before + capitalList[i] + "이"
-          after = after + capitalList[i].lower() + "로"
-        else:
-          before = before + capitalList[i] + "가"
-          after = after + capitalList[i].lower() + "로"
-      # 와/과
-      else:
-        if capitalList[i] == 'L' or capitalList[i] == 'M' or capitalList[i] == 'N' or capitalList[i] == 'R':
-          before = before + capitalList[i] + "과 "
-          after = after + capitalList[i].lower() + "과 "
-        else:
-          before = before + capitalList[i] + "와 "
-          after = after + capitalList[i].lower() + "와 "
-
-    print("1단계 대문자 ", end="")
-    print(before, end="")
-    print(" ", end="")
-    print(after, end="")
-    print(" 바뀌었습니다.")
-
-  return new_id.lower()
-
 def solution(new_id):
+  answer = ""
+  
   # stage 1
-  print("Enter stage 1")
-  new_id = stage1(new_id);
-
-  print(new_id)
+  answer = new_id.lower()
+  
   # stage 2
-  # stage 3
-  # stage 4
-  # stage 5
-  # stage 6
-  # stage 7
+  temp = ""
+  for l in answer:
+    if l.isdigit() or l.isalpha() or l == "-" or l == "." or l == "_":
+      temp += l
 
-  answer = ''
+  answer = temp
+  
+  # stage 3
+  temp = answer[0]
+  for i in range(1, len(answer)):
+    if answer[i] != "." or answer[i-1] != ".":
+      temp += answer[i]
+
+  answer = temp
+
+  # stage 4
+  if answer[0] == ".":
+    answer = answer[1: len(answer)]
+  elif answer[len(answer) - 1] == ".":
+    answer = answer[0: len(answer) - 1]
+
+  # stage 5
+  if len(answer) == 0:
+    answer = "a"
+  
+  # stage 6
+  if len(answer) >= 16:
+    answer = answer[0: 15]
+    if answer[len(answer) - 1] == ".":
+      answer = answer[0: len(answer) - 1]
+
+  # stage 7
+  if len(answer) == 1:
+    answer = answer + answer[0] * 2
+  elif len(answer) == 2:
+    answer = answer + answer[1]
+
   return answer
 
-solution("...!@BaT#*..y.abcdefghijklm")
-
-# solution("z-+.^.")
-# solution("=.=")
-# solution("123_.def")
-# solution("abcdefghijklmn.p")
+# print(solution("...!@BaT#*..y.abcdefghijklm"))
+print(solution("z-+.^."))
+# print(solution("=.="))
+# print(solution("123_.def"))
+# print(solution("abcdefghijklmn.p"))
