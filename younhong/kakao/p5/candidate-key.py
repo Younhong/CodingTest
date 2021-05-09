@@ -22,16 +22,12 @@ def solution(relations):
           uniqueList[j].append(relations[i][j])
 
   answer = 0
-  uniqueNum = 0
 
   for i in range(len(uniqueList)):
     if len(uniqueList[i]) == len(relations):
       indexList.append([i])
-  
-  x = len(indexList)
-  uniqueNum = 2 ** x - 1
 
-  for k in range(len(relations[0])):
+  for k in range(2, len(relations[0])):
     combo_list = list(combinations(totalIndexList, k))
     new_combo = []
     for combo in combo_list:
@@ -66,7 +62,6 @@ def solution(relations):
         if contains is False:
           indexList.append(list(combo))
 
-  print(indexList)
-  return len(indexList) - x + uniqueNum
+  return len(indexList)
 
 print(solution([["100","ryan","music","2"],["200","apeachlll","math","2"],["300","tube","computer","3"],["400","con","computer","4"],["500","muzi","music","3"],["600","apeach","music","2"]]))
