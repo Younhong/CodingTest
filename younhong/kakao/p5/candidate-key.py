@@ -1,26 +1,72 @@
+from itertools import product, combinations
+
 def solution(relations):
-  totalList = len(relations)
-  answerList = []
+  # 분리된 unique한 리스트
+  uniqueList = []
+  # 전체 분리된 리스트
+  totalList = []
+  # unique한 리스트의 index
+  indexList = []
+
+  totalIndexList = [i for i in range(len(relations[0]))]
 
   for i in range(len(relations)):
-    if len(answerList) == 0:
+    if len(uniqueList) == 0:
       for relation in relations[i]:
-        answerList.append([relation])
+        uniqueList.append([relation])
+        totalList.append([relation])
     else:
       for j in range(len(relations[i])):
-        if relations[i][j] not in answerList[j]:
-          answerList[j].append(relations[i][j])
+        totalList[j].append(relations[i][j])
+        if relations[i][j] not in uniqueList[j]:
+          uniqueList[j].append(relations[i][j])
 
   answer = 0
-  temp = 0
+  uniqueNum = 0
 
-  for ans in answerList:
-    if len(ans) == len(relations):
-      temp = temp + 1
+  for i in range(len(uniqueList)):
+    if len(uniqueList[i]) == len(relations):
+      indexList.append([i])
+  
+  x = len(indexList)
+  uniqueNum = 2 ** x - 1
 
-  for i in range(1, answer+1):
-    print(i)
+  for k in range(len(relations[0])):
+    combo_list = list(combinations(totalIndexList, k))
+    new_combo = []
+    for combo in combo_list:
+      for index in indexList:
+        if (len(index) == 1):
+          if index[0] not in combo:
+            new_combo.append(combo)
+    
+    for i in range(len(new_combo)):
+      combo = new_combo[i]
 
-  return answer * 2
+      # 전체 분리된 리스트
+      uniqueList = []
 
-print(solution([["100","ryan","music","2"],["200","apeach","math","2"],["300","tube","computer","3"],["400","con","computer","4"],["500","muzi","music","3"],["600","apeach","music","2"]]))
+      for j in range(len(totalList[0])):
+        temp = [totalList[i][j] for i in combo]
+        if len(uniqueList) == 0:
+          uniqueList.append(temp)
+        else:
+          if temp in uniqueList:
+            break
+          else: 
+            uniqueList.append(temp)
+
+      if (len(uniqueList) == len(relations)):
+        contains = False
+        for index in indexList:
+          if set(index).issubset(set(combo)) is True:
+            contains = True
+            break
+      
+        if contains is False:
+          indexList.append(list(combo))
+
+  print(indexList)
+  return len(indexList) - x + uniqueNum
+
+print(solution([["100","ryan","music","2"],["200","apeachlll","math","2"],["300","tube","computer","3"],["400","con","computer","4"],["500","muzi","music","3"],["600","apeach","music","2"]]))
