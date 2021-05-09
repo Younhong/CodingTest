@@ -21,8 +21,7 @@ public class pocketMon {
         
         int len = nums.length;
         int prev = 0;
-        
-        
+  
         Arrays.sort(nums);
         
         for(int i=0; i<len; i++){
