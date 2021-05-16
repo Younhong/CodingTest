@@ -41,6 +41,6 @@ def solution(N, number):
   
   return -1
 
-# print(solution(5, 31168))
-print(solution(5, 2))
-# print(solution(2, 11))
+print(solution(5, 31168))
+print(solution(5, 12))
+print(solution(2, 11))
