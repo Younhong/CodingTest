@@ -12,10 +12,8 @@ def solution(N, number):
     return len(str(number))
 
   for i in range(2, 9):
-    # print("===")
-    # print(i)
     if i == 2:
-      newList = [1, N * 2, N + N * 10, N * N]
+      newList = [1, N + N, N + N * 10, N * N]
       for n in newList:
         if n == number:
           return i
@@ -23,16 +21,17 @@ def solution(N, number):
           comboList.append(n)
           countNList.append(i)
     else:
-      for j in range(len(countNList)):
-        for k in range(len(countNList)):
-          # print(comboList)
+      comboList.append(int(str(N) * i))
+      countNList.append(i)
+
+      for j in range(0, len(countNList)):
+        for k in range(0, len(countNList)):
           if j != k and countNList[j] + countNList[k] == i:
             temp1 = comboList[j]
             temp2 = comboList[k]
-            if temp1 > temp2:
-              newList = [temp1 + temp2, temp1 // temp2, temp1 - temp2, temp1 * temp2]
-            else:
-              newList = [temp1 + temp2, temp1 - temp2, temp1 * temp2]
+            
+            newList = [temp1 + temp2, temp1 // temp2, temp1 - temp2, temp1 * temp2]
+
             for n in newList:
               if n == number:
                 return i
@@ -40,10 +39,8 @@ def solution(N, number):
                 comboList.append(n)
                 countNList.append(i)
   
-  if answer == 0:
-    return -1
-  return answer
+  return -1
 
 # print(solution(5, 31168))
-print(solution(5, 12))
-print(solution(2, 11))
+print(solution(5, 2))
+# print(solution(2, 11))
