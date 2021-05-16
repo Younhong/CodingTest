@@ -17,30 +17,30 @@ def solution(N, number):
       for n in newList:
         if n == number:
           return i
-        elif n not in comboList and n > 0:
+        elif n not in comboList:
           comboList.append(n)
           countNList.append(i)
     else:
       comboList.append(int(str(N) * i))
       countNList.append(i)
-
+      
       for j in range(0, len(countNList)):
         for k in range(0, len(countNList)):
-          if j != k and countNList[j] + countNList[k] == i:
+          if countNList[j] + countNList[k] == i:
             temp1 = comboList[j]
             temp2 = comboList[k]
-            
+          
             newList = [temp1 + temp2, temp1 // temp2, temp1 - temp2, temp1 * temp2]
 
             for n in newList:
               if n == number:
                 return i
-              elif n not in comboList and n > 0:
+              elif n not in comboList and n != 0:
                 comboList.append(n)
                 countNList.append(i)
   
   return -1
 
-print(solution(5, 31168))
+print(solution(5, 61))
 print(solution(5, 12))
 print(solution(2, 11))
