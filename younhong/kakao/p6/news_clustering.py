@@ -40,7 +40,7 @@ def solution(str1, str2):
 
   return int(answer * 65536)
 
-# print(solution('E=M*C^2', 'e=m*c^2'))
-# print(solution('FRANCE', 'french'))
-# print(solution('handshake', 'shake hands'))
+print(solution('E=M*C^2', 'e=m*c^2'))
+print(solution('FRANCE', 'french'))
+print(solution('handshake', 'shake hands'))
 print(solution('aa1+aa2	', 'AAAA12'))
