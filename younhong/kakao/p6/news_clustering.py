@@ -26,11 +26,6 @@ def solution(str1, str2):
     else:
       total_combo.append(combo)
 
-  # print(first_combo)
-  # print(second_combo)
-  # print(total_combo)
-  # print(duplicate_combo)
-
   if len(total_combo) == 0:
     answer = 1
   else:
