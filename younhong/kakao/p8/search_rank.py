@@ -2,11 +2,30 @@ def solution(info_list, query_list):
   answer = []
 
   for query in query_list:
-    ans = 0
     first, _, second, _, third, _, fourth, fifth = query.split(" ")
+        
+    # print("=======")
+    # print("QUERY POSITION")
+    # print(first)
+    # print(second)
+    # print(third)
+    # print(fourth)
+    # print(fifth)
+    # print("=======")
+
+    ans = 0
 
     for info in info_list:
       lang, pos, exp, food, score = info.split(" ")
+
+      # print("=======")
+      # print("INFO")
+      # print(lang)
+      # print(pos)
+      # print(exp)
+      # print(food)
+      # print(score)
+      # print("=======")
 
       if (first == "-" or first == lang) and (second == "-" or second == pos) and (third == "-" or third == exp) and (fourth == "-" or fourth == food) and (fifth == "-" or int(fifth) <= int(score)):
         ans = ans + 1
