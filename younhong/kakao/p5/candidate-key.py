@@ -1,5 +1,6 @@
 from itertools import product, combinations
 
+# not solved yet
 def solution(relations):
   # 분리된 unique한 리스트
   uniqueList = []

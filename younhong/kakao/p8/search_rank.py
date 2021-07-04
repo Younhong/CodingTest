@@ -1,3 +1,4 @@
+# not solved
 def solution(info_list, query_list):
   answer = []
 
